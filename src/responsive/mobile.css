@@ -1,0 +1,113 @@
+/* =========================
+   MOBILE NAVBAR SYSTEM
+   ETHIOCART
+   ========================= */
+
+@media (max-width: 425px) {
+
+  /* NAV CONTAINER */
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  }
+
+  .logo a {
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-decoration: none;
+    color: #111827;
+  }
+
+  /* HIDE DESKTOP LINKS */
+
+  nav .Left-side,
+  nav .Right-side {
+    display: none;
+  }
+
+  /* HAMBURGER */
+
+  .hamburger {
+    width: 26px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    height: 3px;
+    width: 100%;
+    background: #111827;
+    border-radius: 4px;
+    transition: 0.3s;
+  }
+
+  /* ANIMATION */
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+  /* MOBILE DRAWER */
+
+  .mobile_menu {
+    position: fixed;
+    top: 60px;
+    right: -100%;
+    width: 75%;
+    height: 100vh;
+    background: white;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.12);
+
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 22px;
+
+    transition: 0.35s ease;
+  }
+
+  .mobile_menu.show {
+    right: 0;
+  }
+
+  .mobile_menu a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .mobile_menu a:hover {
+    color: #2563eb;
+  }
+
+  .mobile_logout {
+    padding: 10px;
+    border: none;
+    background: #ef4444;
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+}

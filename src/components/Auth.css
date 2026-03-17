@@ -1,0 +1,104 @@
+.auth_split {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* LEFT BRAND PANEL */
+
+.auth_left {
+  flex: 1;
+  background: linear-gradient(135deg,#2563eb,#1d4ed8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+}
+
+.auth_left h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.auth_left p {
+  opacity: 0.9;
+  font-size: 1.2rem;
+}
+
+/* RIGHT FORM PANEL */
+
+.auth_right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+  gap: 15px;
+  background: #f9fafb;
+}
+
+.auth_right h2 {
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.auth_right input {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.auth_right input:focus {
+  border-color: #2563eb;
+  box-shadow: #2563eb33 0px 0px 0px 3px;
+}
+
+.auth_right button {
+  margin-top: 10px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.auth_right button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: #2563eb55 0px 10px 20px;
+}
+
+.auth_right p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.auth_right a {
+  color: #2563eb;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+  .auth_split {
+    flex-direction: column;
+  }
+
+  .auth_left {
+    padding: 40px;
+    text-align: center;
+  }
+
+  .auth_right {
+    padding: 40px;
+  }
+}

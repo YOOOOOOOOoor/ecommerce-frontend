@@ -31,7 +31,7 @@ function AppContent() {
         const res = await API.get("/auth/me"); // backend URL: /api/auth/me
         setUser(res.data.users);
       } catch (err) {
-        console.error(err.response?.data || err.message);
+        console.error("Fetch user error:", err.response?.data || err.message);
         setUser(null);
       } finally {
         setLoading(false);

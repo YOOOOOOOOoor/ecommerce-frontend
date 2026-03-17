@@ -185,6 +185,7 @@ nav .profile div p {
 nav .profile div button:hover,
 nav .profile div p:hover {
   background-color: #EFF6FF;
+  color: red;
 }
 
 nav .profile div button:active {

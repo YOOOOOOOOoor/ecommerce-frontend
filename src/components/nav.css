@@ -158,6 +158,7 @@ nav .profile div::before{
     z-index: -1;
 }
 nav .profile div button{
+    background-color: red;
 font-size: 1rem;
 }
 nav .profile div button, nav .profile div p{

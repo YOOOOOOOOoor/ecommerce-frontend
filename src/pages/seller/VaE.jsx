@@ -105,7 +105,53 @@ const VaE = ({ refershKey }) => {
             </div>
           ))
         ) : (
-          <h2>No products</h2>
+          <div
+            className=""
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              // backgroundColor: "red",
+              width: "100%",
+              alignItems: "center",
+              height: "50vh",
+              boxSizing: "border-box",
+              alignSelf: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                // backgroundColor: "blue",
+                height: "100%",
+                width: "30%",
+                boxSizing: "border-box",
+                // justifyContent: "space-around",
+                gap: "20px",
+                color: "gray",
+              }}
+            >
+              <img
+                src="/content/sell-productsvg.svg"
+                alt=""
+                style={{ width: "50px" }}
+              />
+              <p>No products found.</p>
+              <p style={{ textAlign: "center" }}>
+                Create your first product to start selling and grow your
+                business.
+              </p>
+              <button
+                onClick={() => setShowForm(true)}
+                className="Add_products"
+                style={{ width: "100%" }}
+              >
+                Add Product
+              </button>
+            </div>
+          </div>
         )}
       </div>
 

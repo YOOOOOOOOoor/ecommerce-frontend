@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 // import axios from "axios";
 import API from "../../Api/api.js";
+import toast from "react-hot-toast";
 
 const Add = ({ onSuccess }) => {
   const [form, setForm] = useState({
@@ -16,6 +17,8 @@ const Add = ({ onSuccess }) => {
 
   const sendForm = async (e) => {
     e.preventDefault();
+
+    // Validation check
     if (
       !form.name ||
       !form.description ||
@@ -23,10 +26,15 @@ const Add = ({ onSuccess }) => {
       !form.image ||
       !form.category
     ) {
-      return setError("Please fill all the fields");
+      setError("Please fill all the fields");
+      toast.error("Please fill all the fields"); // <-- toast for validation error
+      return;
     }
+
     try {
       await API.post("/seller", form);
+
+      // Reset form and UI
       setForm({
         name: "",
         description: "",
@@ -37,8 +45,12 @@ const Add = ({ onSuccess }) => {
       setError("");
       setShowForm(false);
       onSuccess();
-    } catch (error) {
-      console.error(error);
+
+      // Success toast
+      toast.success("Product added successfully!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to add product. Try again."); // <-- toast for API error
     }
   };
   return (

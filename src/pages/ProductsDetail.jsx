@@ -1,9 +1,7 @@
-import React from "react";
-import { useState, useEffect } from "react";
-// import axios from "axios";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import API from "../Api/api.js";
+import toast from "react-hot-toast"; // <-- import toast
 
 const ProductsDetail = () => {
   const { id } = useParams();
@@ -53,13 +51,14 @@ const ProductsDetail = () => {
     return "just now";
   };
 
+  // Add product to cart with toast notifications
   const addCarts = async (id) => {
     try {
-      await API.post("/products/add", {
-        id,
-      });
+      await API.post("/products/add", { id });
+      toast.success("Product added to cart!"); // <-- success toast
     } catch (error) {
       console.error(error.message);
+      toast.error("Failed to add product to cart."); // <-- error toast
     }
   };
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "../components/Auth.css";
 import API from "../Api/api.js";
+import toast from "react-hot-toast"; // <-- import toast
 
 const Login = ({ setUser, user }) => {
   const navigate = useNavigate();
@@ -21,9 +21,11 @@ const Login = ({ setUser, user }) => {
     try {
       const res = await API.post("/auth/login", form);
       setUser(res.data.users);
+      toast.success("Logged in successfully!"); // <-- toast success
       navigate("/");
     } catch (err) {
       console.log(err.message);
+      toast.error("Login failed. Please check your credentials."); // <-- toast error
     }
   };
 

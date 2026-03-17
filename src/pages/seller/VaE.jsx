@@ -1,7 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
-// import axios from "axios";
+import React, { useState, useEffect } from "react";
 import API from "../../Api/api.js";
+import toast from "react-hot-toast"; // <-- import toast
 
 const VaE = ({ refershKey }) => {
   const [products, setProducts] = useState([]);
@@ -25,19 +24,16 @@ const VaE = ({ refershKey }) => {
       image: product.image,
       category: product.category,
     });
-
     setEditId(product.id);
     setShowForm(true);
   };
+
   const updateProduct = async (e) => {
     e.preventDefault();
-
     try {
       await API.put(`/seller/update/${editId}`, form);
-
       setEditId(null);
       setShowForm(false);
-
       setForm({
         name: "",
         description: "",
@@ -45,41 +41,39 @@ const VaE = ({ refershKey }) => {
         image: "",
         category: "",
       });
-
       await fetchProducts();
+      toast.success("Product updated successfully!"); // <-- toast success
     } catch (error) {
       console.error(error.message);
+      toast.error("Failed to update product."); // <-- toast error
     }
   };
+
   const fetchProducts = async () => {
     try {
-      const res = await API.get("/seller", {
-        params: {
-          page,
-          limit: 4,
-        },
-      });
+      const res = await API.get("/seller", { params: { page, limit: 4 } });
       setProducts(res.data.products);
       setTotalPage(res.data.totalPages);
     } catch (error) {
       console.error(error.message);
+      toast.error("Failed to fetch products."); // <-- toast error
     }
   };
+
   useEffect(() => {
     fetchProducts();
   }, [refershKey, page]);
 
-  //delete products
   const deleteProduct = async (id) => {
     try {
       await API.delete(`/seller/delete/${id}`);
       await fetchProducts();
+      toast.success("Product deleted successfully!"); // <-- toast success
     } catch (error) {
       console.error(error.message);
+      toast.error("Failed to delete product."); // <-- toast error
     }
   };
-
-  //edit products
 
   return (
     <main className="Edit_and_delete">
@@ -130,7 +124,6 @@ const VaE = ({ refershKey }) => {
 
               <label>
                 <span>Description:</span>
-
                 <input
                   type="text"
                   value={form.description}
@@ -189,12 +182,12 @@ const VaE = ({ refershKey }) => {
           </div>
         </div>
       )}
+
       <div className="Pagination">
         <button onClick={() => setPage(page - 1)} disabled={page === 1}>
           <img src="/content/previous.svg" alt="" />
         </button>
         <span>
-          {" "}
           page {page} of {totalPage}
         </span>
         <button onClick={() => setPage(page + 1)} disabled={page === totalPage}>

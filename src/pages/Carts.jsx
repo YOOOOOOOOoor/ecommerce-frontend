@@ -1,17 +1,23 @@
-import React from "react";
-import { useState, useEffect } from "react";
-// import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../Api/api.js";
+import toast from "react-hot-toast"; // <-- import toast
 
-const Carts = () => {
+const Carts = ({ user }) => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
-  // console.log(products);
+
+  useEffect(() => {
+    if (!user) navigate("/login");
+  }, [user, navigate]);
+
   const fetchItems = async () => {
     try {
       const res = await API.get("/carts");
       setProducts(res.data.products);
     } catch (error) {
       console.error(error.message);
+      toast.error("Failed to fetch cart items."); // <-- toast error
     }
   };
 
@@ -23,8 +29,10 @@ const Carts = () => {
     try {
       await API.delete(`/carts/delete/${id}`);
       await fetchItems();
+      toast.success("Item removed from cart!"); // <-- toast success
     } catch (error) {
       console.error(error.message);
+      toast.error("Failed to remove item."); // <-- toast error
     }
   };
 
@@ -32,8 +40,6 @@ const Carts = () => {
     (sum, product) => sum + Number(product.total_price),
     0,
   );
-
-  // console.log(products, products[0]);
 
   return (
     <main className="Carts">
@@ -101,12 +107,12 @@ const Carts = () => {
             </div>
             <div>
               <p>Estimated Tax (15%)</p>
-              <p className="Second">${finalTotal.toFixed(2) * 0.15}</p>
+              <p className="Second">${(finalTotal * 0.15).toFixed(2)}</p>
             </div>
           </div>
           <div className="totalAndTotalPrice">
             <p>Total</p>
-            <p className="Second">${finalTotal.toFixed(2) * 1.15}</p>
+            <p className="Second">${(finalTotal * 1.15).toFixed(2)}</p>
           </div>
           <div className="CheckOut">
             <button>Checkout</button>

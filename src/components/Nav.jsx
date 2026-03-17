@@ -1,24 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./nav.css";
 import toast from "react-hot-toast";
-// import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import API from "../Api/api.js";
 
 const Nav = ({ user, setUser }) => {
   const navigate = useNavigate();
   const [show, setShow] = React.useState(false);
-const logout = async () => {
-  try {
-    await API.post("/auth/logout");
-    setUser(null);
-    toast.success("Logged out successfully!"); // <-- show success toast
-    navigate("/login");
-  } catch (err) {
-    toast.error("Logout failed. Please try again."); // <-- show error toast
-  }
-};
+
+  const logout = async () => {
+    try {
+      await API.post("/auth/logout");
+      setUser(null);
+      toast.success("Logged out successfully!"); // show success toast
+      navigate("/login");
+    } catch (err) {
+      toast.error("Logout failed. Please try again."); // show error toast
+      console.log(err); // log error for debugging
+    }
+  };
+
   return (
     <nav>
       <div className="Nav-Home-page">
@@ -37,6 +38,7 @@ const logout = async () => {
           <img src="/content/products.svg" alt="" />
           <span>Products</span>
         </Link>
+
         {user && (
           <>
             <Link to="/seller">
@@ -56,7 +58,7 @@ const logout = async () => {
               <img src="/content/user.svg" alt="" />
             </button>
             {show && (
-              <div>
+              <div className={`profile-dropdown ${show ? "show" : ""}`}>
                 <p>Profile</p>
                 <button onClick={logout}>Logout</button>
                 <button onClick={() => setShow(false)}>Cancel</button>

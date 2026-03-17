@@ -1,13 +1,10 @@
-import React from "react";
-import { useState, useEffect } from "react";
-// import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import { useParams } from "react-router-dom";
 import API from "../Api/api.js";
+import toast from "react-hot-toast"; // <-- import toast
 
 const Products = () => {
   const navigate = useNavigate();
-  // const { id } = useParams();
 
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({
@@ -22,36 +19,32 @@ const Products = () => {
   const fetchProducts = async () => {
     try {
       const res = await API.get("/products", {
-        params: {
-          ...filters,
-          page,
-          limit: 6,
-        },
+        params: { ...filters, page, limit: 6 },
       });
       setProducts(res.data.products);
       setTotalPages(res.data.totalPages);
       setTotalProducts(res.data.total);
     } catch (error) {
       console.error(error.message);
+      toast.error("Failed to fetch products."); // <-- toast error
     }
   };
+
   useEffect(() => {
     fetchProducts();
   }, [filters, page]);
 
-  //adding carts
-
+  // Add product to cart
   const addCarts = async (id) => {
     try {
-      await API.post("/products/add", {
-        id,
-      });
+      await API.post("/products/add", { id });
+      toast.success("Product added to cart!"); // <-- success toast
     } catch (error) {
       console.error(error.message);
+      toast.error("Failed to add product to cart."); // <-- error toast
     }
   };
 
-  //date calculate
   const timeAgo = (date) => {
     const seconds = Math.floor((new Date() - new Date(date)) / 1000);
 
@@ -92,7 +85,6 @@ const Products = () => {
 
           <div className="categoryFilter">
             <h4>Category</h4>
-
             {["all", "electronics", "shoes", "clothes"].map((i) => (
               <label key={i}>
                 <input
@@ -107,12 +99,12 @@ const Products = () => {
               </label>
             ))}
           </div>
+
           <div className="range">
             <div className="amount">
               <p>Price Range</p>
               <p>up to ${filters.price}</p>
             </div>
-
             <div>
               <input
                 min={0}
@@ -153,7 +145,6 @@ const Products = () => {
                   </div>
                   <div className="price_Addtocart">
                     <p className="product_price">{product.price}$</p>
-
                     <div className="Buttons">
                       <button onClick={() => addCarts(product.id)}>
                         <img src="/content/cartplus.svg" alt="" />
@@ -174,6 +165,7 @@ const Products = () => {
           </div>
         </div>
       </div>
+
       <div className="Pagination">
         <button onClick={() => setPage(page - 1)} disabled={page === 1}>
           <img src="/content/previous.svg" alt="" />

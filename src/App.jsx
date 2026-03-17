@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import { Toaster } from "react-hot-toast";
+// import axios from "axios";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
-import { Toaster } from "react-hot-toast"; // <-- keep this
+
 import API from "./Api/api.js";
 
 import Home from "./pages/Home";

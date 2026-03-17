@@ -106,63 +106,89 @@ nav .Left-side img{
     /* background-color: red; */
 }
 
-nav .profile{
-    position: relative;
+/* Profile */
+/* Profile dropdown improvements */
+nav .profile {
+  position: relative;
 }
-nav .profile .prof{
-    
-    padding:4px;
-    border-radius: 50%;
-    transition: all 0.2s ease-in-out;
-    background-color: transparent;
-}
-nav .profile .prof:focus{
-    background-color: #EFF6FF;
 
+nav .profile .prof {
+  padding: 6px;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-nav .profile button{
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+
+nav .profile .prof:hover {
+  background-color: #EFF6FF;
 }
-nav .profile div{
-    position: absolute;
-    top: 50px;
-    right: 0;
-    background-color: white;
-    padding: 10px;
-    width:100px;
-    border-radius: 10px;
-    height: 100px;
-    display: flex;
-    /* justify-content: center; */
-    gap: 10px;
-    align-items: center;
-    flex-direction: column;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    z-index: 100;
+
+nav .profile .prof:active {
+  transform: scale(0.95);
 }
-nav .profile div::before{
-    content: "";
-    position: absolute;
-    top: -7px;
-    right: 10px;
-    width: 10px;
-    height: 10px;
-    transform: rotate(45deg);
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid white;
-    /* border:1px solid black; */
-    background-color: white;
-    z-index: -1;
+
+nav .profile div {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background-color: white;
+  padding: 10px 0;
+  width: 150px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 100;
 }
-nav .profile div button{
+nav .profile div button {
     background-color: red;
-font-size: 1rem;
+    font-size: 1rem;
 }
-nav .profile div button, nav .profile div p{
-border-bottom:1px solid #ccc;
+
+nav .profile div.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+nav .profile div::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 16px;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  transform: rotate(45deg);
+  box-shadow: -1px -1px 1px rgba(0,0,0,0.05);
+}
+
+nav .profile div button,
+nav .profile div p {
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+nav .profile div button:hover,
+nav .profile div p:hover {
+  background-color: #EFF6FF;
+}
+
+nav .profile div button:active {
+  transform: scale(0.98);
 }
 /****************************************************************** */
 /****************************************************************** */

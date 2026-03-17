@@ -90,6 +90,7 @@ const Carts = ({ user }) => {
           ) : (
             <div
               style={{
+                marginTop: "120px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -97,6 +98,7 @@ const Carts = ({ user }) => {
                 alignItems: "center",
                 height: "70vh",
                 boxSizing: "border-box",
+                color: "gray",
               }}
             >
               <div
@@ -125,9 +127,7 @@ const Carts = ({ user }) => {
                   }}
                 />
 
-                <p
-                  style={{ fontSize: "20px", fontWeight: "600", color: "#333" }}
-                >
+                <p style={{ fontSize: "20px", fontWeight: "600" }}>
                   Your cart is empty
                 </p>
 

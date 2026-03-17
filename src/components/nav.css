@@ -146,6 +146,7 @@ nav .profile div {
   transform: translateY(-10px);
   transition: all 0.3s ease;
   z-index: 100;
+   box-sizing: border-box;
 }
 nav .profile div button {
     background-color: red;
@@ -190,6 +191,7 @@ nav .profile div p:hover {
 
 nav .profile div button:active {
   transform: scale(0.98);
+
 }
 /****************************************************************** */
 /****************************************************************** */

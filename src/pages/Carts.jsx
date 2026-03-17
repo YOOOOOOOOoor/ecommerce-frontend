@@ -48,9 +48,7 @@ const Carts = ({ user }) => {
       </div>
       <div className="cart_and_total">
         <div className="cart_product">
-          {products.length === 0 ? (
-            <p>Cart is Empty</p>
-          ) : (
+          {products.length > 0 ? (
             products.map((product) => (
               <div key={product.id} className="products">
                 <div>
@@ -89,6 +87,64 @@ const Carts = ({ user }) => {
                 </div>
               </div>
             ))
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                width: "100%",
+                alignItems: "center",
+                height: "70vh",
+                boxSizing: "border-box",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  height: "100%",
+                  // backgroundColor: "red",
+                  width: "50%",
+                  boxSizing: "border-box",
+                  gap: "40px",
+                  padding: "20px 0 0 0 ",
+                  color: "gray",
+                  textAlign: "center",
+                }}
+              >
+                <img
+                  src="/content/carts.svg"
+                  alt=""
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    // backg  roundColor: "red",
+                    borderRadius: "0px",
+                  }}
+                />
+
+                <p
+                  style={{ fontSize: "20px", fontWeight: "600", color: "#333" }}
+                >
+                  Your cart is empty
+                </p>
+
+                <p>
+                  Looks like you haven’t added anything yet. Start shopping and
+                  fill your cart with amazing products.
+                </p>
+
+                <button
+                  onClick={() => navigate("/products")}
+                  className="Add_products"
+                  style={{ width: "100%" }}
+                >
+                  Continue Shopping
+                </button>
+              </div>
+            </div>
           )}
         </div>
         <div className="total">

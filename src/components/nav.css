@@ -23,6 +23,7 @@ box-shadow: #ef4444 0px 4px 9px 0px;
 } */
 
 nav{
+    background-color:red;
     position: sticky;
     top: 0;
     bottom:0px;

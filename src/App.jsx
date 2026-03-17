@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import API from "./Api/api.js";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -16,13 +11,9 @@ import Seller from "./pages/Seller";
 import Carts from "./pages/Carts";
 import ProductDetail from "./pages/ProductsDetail";
 
-axios.defaults.withCredentials = true;
-
 function AppContent() {
   const location = useLocation();
-
-  const hideNav =
-    location.pathname === "/login" || location.pathname === "/register";
+  const hideNav = location.pathname === "/login" || location.pathname === "/register";
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -30,15 +21,15 @@ function AppContent() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/auth/me");
+        const res = await API.get("/auth/me"); // backend URL: /api/auth/me
         setUser(res.data.users);
-      } catch (error) {
-        console.error(error.message);
+      } catch (err) {
+        console.error(err.response?.data || err.message);
+        setUser(null);
       } finally {
         setLoading(false);
       }
     };
-
     fetchUser();
   }, []);
 
@@ -47,33 +38,14 @@ function AppContent() {
   return (
     <>
       {!hideNav && <Nav user={user} setUser={setUser} />}
-
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} />} />
-        <Route
-          path="/login"
-          element={<Login user={user} setUser={setUser} />}
-        />
-        <Route
-          path="/register"
-          element={<Register user={user} setUser={setUser} />}
-        />
-        <Route
-          path="/products"
-          element={<Products user={user} setUser={setUser} />}
-        />
-        <Route
-          path="/products/:id"
-          element={<ProductDetail user={user} setUser={setUser} />}
-        />
-        <Route
-          path="/carts"
-          element={<Carts user={user} setUser={setUser} />}
-        />
-        <Route
-          path="/seller"
-          element={<Seller user={user} setUser={setUser} />}
-        />
+        <Route path="/login" element={<Login user={user} setUser={setUser} />} />
+        <Route path="/register" element={<Register user={user} setUser={setUser} />} />
+        <Route path="/products" element={<Products user={user} setUser={setUser} />} />
+        <Route path="/products/:id" element={<ProductDetail user={user} setUser={setUser} />} />
+        <Route path="/carts" element={<Carts user={user} setUser={setUser} />} />
+        <Route path="/seller" element={<Seller user={user} setUser={setUser} />} />
       </Routes>
     </>
   );

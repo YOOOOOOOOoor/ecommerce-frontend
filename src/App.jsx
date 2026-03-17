@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { Toaster } from "react-hot-toast"; // <-- import Toaster
 import API from "./Api/api.js";
 
 import Home from "./pages/Home";
@@ -37,6 +38,7 @@ function AppContent() {
 
   return (
     <>
+       <Toaster position="top-right" /> {/* <-- Add Toaster here */}
       {!hideNav && <Nav user={user} setUser={setUser} />}
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} />} />

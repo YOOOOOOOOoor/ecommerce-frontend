@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { Toaster } from "react-hot-toast"; // <-- import Toaster
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { Toaster } from "react-hot-toast"; // <-- keep this
 import API from "./Api/api.js";
 
 import Home from "./pages/Home";
@@ -14,7 +19,8 @@ import ProductDetail from "./pages/ProductsDetail";
 
 function AppContent() {
   const location = useLocation();
-  const hideNav = location.pathname === "/login" || location.pathname === "/register";
+  const hideNav =
+    location.pathname === "/login" || location.pathname === "/register";
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -38,16 +44,34 @@ function AppContent() {
 
   return (
     <>
-       <Toaster position="top-right" /> {/* <-- Add Toaster here */}
+      <Toaster position="top-right" /> {/* <-- keep this */}
       {!hideNav && <Nav user={user} setUser={setUser} />}
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} />} />
-        <Route path="/login" element={<Login user={user} setUser={setUser} />} />
-        <Route path="/register" element={<Register user={user} setUser={setUser} />} />
-        <Route path="/products" element={<Products user={user} setUser={setUser} />} />
-        <Route path="/products/:id" element={<ProductDetail user={user} setUser={setUser} />} />
-        <Route path="/carts" element={<Carts user={user} setUser={setUser} />} />
-        <Route path="/seller" element={<Seller user={user} setUser={setUser} />} />
+        <Route
+          path="/login"
+          element={<Login user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/register"
+          element={<Register user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/products"
+          element={<Products user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/products/:id"
+          element={<ProductDetail user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/carts"
+          element={<Carts user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/seller"
+          element={<Seller user={user} setUser={setUser} />}
+        />
       </Routes>
     </>
   );

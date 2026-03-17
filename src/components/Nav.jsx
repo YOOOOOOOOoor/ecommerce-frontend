@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./nav.css";
+import toast from "react-hot-toast";
 // import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API from "../Api/api.js";
@@ -8,11 +9,16 @@ import API from "../Api/api.js";
 const Nav = ({ user, setUser }) => {
   const navigate = useNavigate();
   const [show, setShow] = React.useState(false);
-  const logout = async () => {
+const logout = async () => {
+  try {
     await API.post("/auth/logout");
     setUser(null);
+    toast.success("Logged out successfully!"); // <-- show success toast
     navigate("/login");
-  };
+  } catch (err) {
+    toast.error("Logout failed. Please try again."); // <-- show error toast
+  }
+};
   return (
     <nav>
       <div className="Nav-Home-page">

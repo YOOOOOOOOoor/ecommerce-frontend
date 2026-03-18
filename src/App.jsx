@@ -18,6 +18,8 @@ import Products from "./pages/Products";
 import Seller from "./pages/Seller";
 import Carts from "./pages/Carts";
 import ProductDetail from "./pages/ProductsDetail";
+import Profile from "./pages/Profile"; /**Future use */
+import Footer from "./components/Footer";
 
 function AppContent() {
   const location = useLocation();
@@ -54,6 +56,11 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home user={user} setUser={setUser} />} />
         <Route
+          path="/profile"
+          element={<Profile user={user} setUser={setUser} />}
+        />
+
+        <Route
           path="/login"
           element={<Login user={user} setUser={setUser} />}
         />
@@ -78,6 +85,7 @@ function AppContent() {
           element={<Seller user={user} setUser={setUser} />}
         />
       </Routes>
+      <Footer />
     </>
   );
 }

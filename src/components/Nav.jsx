@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "./nav.css";
 import toast from "react-hot-toast";
 import API from "../Api/api.js";
+import { useRef, useEffect, useState } from "react";
 
 const Nav = ({ user, setUser }) => {
   const navigate = useNavigate();
-  const [show, setShow] = React.useState(false);
 
   const logout = async () => {
     try {
@@ -19,6 +19,26 @@ const Nav = ({ user, setUser }) => {
       console.log(err); // log error for debugging
     }
   };
+
+  // Close dropdown if click outside
+  const [show, setShow] = useState(false);
+  const dropdownRef = useRef();
+  const buttonRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        setShow(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <nav>
@@ -54,14 +74,25 @@ const Nav = ({ user, setUser }) => {
 
         {user ? (
           <div className="profile">
-            <button onClick={() => setShow(!show)} className="prof">
+            <button
+              ref={buttonRef}
+              onClick={() => setShow(!show)}
+              className="prof"
+            >
               <img src="/content/user.svg" alt="" />
             </button>
             {show && (
-              <div className={`profile-dropdown ${show ? "show" : ""}`}>
-                <p>Profile</p>
-                <button onClick={logout}>Logout</button>
-                <button onClick={() => setShow(false)}>Cancel</button>
+              <div
+                ref={dropdownRef}
+                className={`profile-dropdown ${show ? "show" : ""}`}
+              >
+                <p className="profile-btn">Profile</p>
+                <button className="logout-btn" onClick={logout}>
+                  Logout
+                </button>
+                <button className="cancel-btn" onClick={() => setShow(false)}>
+                  Cancel
+                </button>
               </div>
             )}
           </div>

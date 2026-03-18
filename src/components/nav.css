@@ -1,4 +1,4 @@
-body,h1,h2,p{
+body,h1,h2,h3,p{
     margin: 0;
     padding: 0;
      font-family: "DM Sans", sans-serif;
@@ -44,19 +44,19 @@ nav a{
     
 }
 
-nav .Nav-Home-page a{
+.Nav-Home-page a{
     color: #111827;
-  
+    text-decoration: none;
     font-weight: 1000;
     font-size: 1.6rem;
     letter-spacing: -1px;
     display: flex;
     align-items: center;
 }
-nav .Nav-Home-page span{
+.Nav-Home-page span{
     color: #2563eb;
 }
-nav .Nav-Home-page img{
+.Nav-Home-page img{
     width: 50px;
     height: 50px;
     margin-right: 10px;
@@ -150,8 +150,13 @@ nav .profile div {
    box-sizing: border-box;
 }
 nav .profile div button {
-    background-color: red;
+    background-color: transparent;
+    color: black;
     font-size: 1rem;
+}
+nav .profile div button:hover {
+    background-color: #EFF6FF;
+    color: red;
 }
 
 nav .profile div.show {
@@ -194,6 +199,46 @@ nav .profile div p:hover {
 nav .profile div button:active {
   transform: scale(0.98);
 
+}
+/* General dropdown text (Profile) */
+nav .profile-dropdown p {
+  width: 100%;
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: black;              /* same color as nav text */
+  cursor: default;           /* not clickable */
+  margin: 0;
+}
+
+/* All dropdown buttons */
+nav .profile-dropdown button {
+  width: 100%;
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 0.95rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Profile button hover (same as normal text) */
+nav .profile-dropdown p.profile-btn:hover {
+  background-color: #EFF6FF;
+  color: #0000EE;             /* same color */
+}
+
+/* Logout button hover (red text) */
+nav .profile-dropdown button.logout-btn:hover {
+  background-color: #EFF6FF;
+  color: red;
+}
+
+/* Cancel button hover (gray text) */
+nav .profile-dropdown button.cancel-btn:hover {
+  background-color: #EFF6FF;
+  color: gray;
 }
 /****************************************************************** */
 /****************************************************************** */
@@ -1334,3 +1379,67 @@ main.Carts{
     box-shadow: #2563eb 0px 7px 29px 0px;
     transition: all 0.3s ease;
 }
+
+
+
+
+
+/************************* */
+/************************* */
+/************************* */
+/************************* */
+/************************* */
+/************************* */
+
+
+/* Footer */
+
+footer{
+    background-color:#F9FAFB;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 50vh;
+}
+.footers{
+    display: flex;
+    justify-content: space-between  ;
+    padding: 10px;
+    align-items: center;
+    height: 70%;
+    padding: 0 90px;
+    border-bottom: 1px solid #D1D5DB;
+    
+}
+.footers div:first-child{
+
+    width: 30%;
+}
+.footers div{
+    /* background-color: red; */
+    padding-top: 30px;
+   height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+
+    width: 20%;
+}
+.footers  a{
+    text-decoration: none;
+    color: inherit;
+     transition: all 0.3s ease;
+}
+.footers a:hover{
+    color: #2563EB;
+    transition: all 0.3s ease;
+}
+.copyright p{
+    text-align: center;
+    padding: 20px;
+    color: #9CA3AF;
+}
+
+
+

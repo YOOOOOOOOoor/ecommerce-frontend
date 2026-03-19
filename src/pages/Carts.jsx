@@ -25,6 +25,15 @@ const Carts = ({ user }) => {
     fetchItems();
   }, []);
 
+  const increaseItem = async (id) => {
+    await API.post("/products/add", { id });
+    fetchItems();
+  };
+  const decreaseQty = async (cartId) => {
+    await API.put(`/carts/decrease/${cartId}`);
+    fetchItems();
+  };
+
   const del = async (id) => {
     try {
       await API.delete(`/carts/delete/${id}`);
@@ -66,9 +75,13 @@ const Carts = ({ user }) => {
                   </div>
                   <div className="QuantAndRemove">
                     <div className="QuantAndAS">
-                      <button>-</button>
+                      <button onClick={() => decreaseQty(product.cart_id)}>
+                        -
+                      </button>
                       <p>{product.quantity}</p>
-                      <button>+</button>
+                      <button onClick={() => increaseItem(product.id)}>
+                        +
+                      </button>
                     </div>
 
                     <button

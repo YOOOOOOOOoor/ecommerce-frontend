@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../../Api/api.js";
 import toast from "react-hot-toast"; // <-- import toast
+import Add from "./Add.jsx";
 
 const VaE = ({ refershKey }) => {
   const [products, setProducts] = useState([]);
@@ -143,13 +144,7 @@ const VaE = ({ refershKey }) => {
                 Create your first product to start selling and grow your
                 business.
               </p>
-              <button
-                onClick={() => setShowForm(true)}
-                className="Add_products"
-                style={{ width: "100%" }}
-              >
-                Add Product
-              </button>
+              <Add refershKey={refershKey} />
             </div>
           </div>
         )}

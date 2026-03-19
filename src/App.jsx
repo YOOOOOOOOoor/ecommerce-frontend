@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import { Analytics } from "@vercel/analytics/react";
 // import axios from "axios";
 import {
   BrowserRouter as Router,
@@ -87,7 +86,6 @@ function AppContent() {
         />
       </Routes>
       <Footer />
-      <Analytics />
     </>
   );
 }

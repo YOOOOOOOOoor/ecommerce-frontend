@@ -1165,6 +1165,7 @@ main.Carts{
     display: flex;
     flex-direction: column;
     padding:0 30px;
+    margin-bottom: 100px;
 }
 .Shoping_cart{
     margin: 30px 0;

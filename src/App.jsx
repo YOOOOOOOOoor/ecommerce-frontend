@@ -87,7 +87,7 @@ function AppContent() {
           element={<Seller user={user} setUser={setUser} />}
         />
       </Routes>
-      <Footer />
+      {!hideNav && <Footer />}
     </>
   );
 }

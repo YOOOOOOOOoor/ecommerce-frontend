@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 // import axios from "axios";
 import {
   BrowserRouter as Router,
@@ -96,6 +97,7 @@ function App() {
     <Router>
       <AppContent />
       <Analytics />
+      <SpeedInsights />
     </Router>
   );
 }

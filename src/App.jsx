@@ -22,11 +22,16 @@ import Carts from "./pages/Carts";
 import ProductDetail from "./pages/ProductsDetail";
 import Profile from "./pages/Profile"; /**Future use */
 import Footer from "./components/Footer";
+import Admin from "./Admin/Admin.jsx";
 
 function AppContent() {
   const location = useLocation();
   const hideNav =
     location.pathname === "/login" || location.pathname === "/register";
+  const hideFooter =
+    location.pathname === "/login" ||
+    location.pathname === "/register" ||
+    location.pathname === "/admin";
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -86,8 +91,12 @@ function AppContent() {
           path="/seller"
           element={<Seller user={user} setUser={setUser} />}
         />
+        <Route
+          path="/admin"
+          element={<Admin user={user} setUser={setUser} />}
+        />
       </Routes>
-      {!hideNav && <Footer />}
+      {!hideFooter && <Footer />}
     </>
   );
 }

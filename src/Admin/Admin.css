@@ -1,0 +1,84 @@
+.Admin{
+    display: flex;
+    height: 100vh;
+    position:fixed;
+}
+.Admin-Filter{
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+}
+.Admin-Filter input{
+    opacity: 0;
+}
+.Admin-Filter label{
+    margin: 10px;
+    padding: 15px 5px;
+    border-radius: 10px;
+    background-color: red;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+.Admin-Filter label:hover{
+    background-color: rgb(91, 26, 26);
+}
+.Admin-Filter label.active {
+    background-color: black;
+}
+.Admin-Content{
+    width: 80vw;
+    background-color: green;
+}
+
+.part-admin{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.Top-part-admin{
+    display: flex;
+    background-color: red;
+    justify-content: space-between;
+    padding: 40px;
+    align-items: center;
+    
+}
+.Bottom-part-admin{
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+    /* justify-content: space-between; */
+    padding: 40px;
+    /* align-items: center; */
+    height: 70%;
+}
+.Bottom-part-admin .conatainer{
+    background-color: brown;
+    padding: 0 20px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+.Bottom-part-admin .search{
+    background-color: red;
+}
+.Bottom-part-admin .idk{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 78px;
+}
+
+
+.Bottom-part-admin .users-admin{
+    display: flex;
+    justify-content: space-between;
+    background-color: gold;
+}
+.users-admin p{
+    width: 16%;
+    background-color: aquamarine;
+    margin: 10px 0;
+    text-align: center;
+}

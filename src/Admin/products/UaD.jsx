@@ -59,9 +59,11 @@ const UaD = ({ onSuccess, i }) => {
   return (
     <div>
       <div className="editAdel">
-        <button onClick={() => startEdit(i)}>Edit</button>
+        <button onClick={() => startEdit(i)}>
+          <img src="/IMG/edit.svg" alt="" />
+        </button>
         <button onClick={() => deleteProduct(i.id)} id="red">
-          Delete
+          <img src="/IMG/delete.svg" alt="" />
         </button>
       </div>
       {showForm && (

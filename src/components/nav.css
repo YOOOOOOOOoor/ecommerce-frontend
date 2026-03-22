@@ -1158,7 +1158,28 @@ select {
 /****************************************************************** */
 /****************************************************************** */
 
+/* The scrollbar itself */
+::-webkit-scrollbar {
+  width: 12px;        /* width of vertical scrollbar */
+  height: 12px;       /* height of horizontal scrollbar */
+}
 
+/* The track (background) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* The draggable part (thumb) */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Hover effect on the thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 /*carts css*/
 
 main.Carts{

@@ -71,6 +71,12 @@ const Nav = ({ user, setUser }) => {
             </Link>
           </>
         )}
+        {user && user.role === "admin" && (
+          <Link to="/admin">
+            <img src="/content/admin.svg" alt="" />
+            <span>Admin</span>
+          </Link>
+        )}
 
         {user ? (
           <div className="profile">

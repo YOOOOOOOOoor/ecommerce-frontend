@@ -51,6 +51,7 @@ const Users = () => {
         <div className="conatainer">
           <div className="search">
             <div>
+              <img src="/IMG/search.svg" alt="" />
               <input
                 type="text"
                 name=""
@@ -62,36 +63,57 @@ const Users = () => {
               />
             </div>
           </div>
-          <div className="idk">
-            <p>User</p>
-            <p>Email Address</p>
-            <p>Role</p>
-            <div></div>
+
+          <div>
+            <table className="admin-table">
+              <thead>
+                <tr className="idk">
+                  <th>Name</th>
+                  <th>Email Address</th>
+                  <th>Role</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody className="users">
+                {users.map((user) => (
+                  <tr key={user.id} className="users-admin">
+                    <td className="Name">
+                      <span>{user.name}</span>
+                    </td>
+                    <td className="email">
+                      <span>{user.email}</span>
+                    </td>
+                    <td
+                      className={user.role === "admin" ? "admin role" : "role"}
+                    >
+                      <span> {user.role}</span>
+                    </td>
+
+                    <td className="del">
+                      <button onClick={() => deleteUser(user.id)}>
+                        <img src="/IMG/delete.svg" alt="" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <div className="users">
-            {users.map((user) => (
-              <div key={user.id} className="users-admin">
-                <p>{user.name}</p>
-                <p>{user.email}</p>
-                <p>{user.role}</p>
-                <button onClick={() => deleteUser(user.id)}>Delete</button>
-              </div>
-            ))}
-          </div>
-          <div className="prev-next">
-            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-              Prev
-            </button>
-            <span>
-              {page}/{totalPages}
-            </span>
-            <button
-              onClick={() => setPage(page + 1)}
-              disabled={page === totalPages}
-            >
-              Next
-            </button>
-          </div>
+        </div>
+        <div className="prev-next">
+          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+            Prev
+          </button>
+          <span>
+            {page}/{totalPages}
+          </span>
+          <button
+            onClick={() => setPage(page + 1)}
+            disabled={page === totalPages}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

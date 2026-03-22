@@ -56,6 +56,7 @@ const Products = () => {
         <div className="conatainer">
           <div className="search" style={{ display: "flex" }}>
             <div>
+              <img src="/IMG/search.svg" alt="" />
               <input
                 type="text"
                 name=""
@@ -81,38 +82,51 @@ const Products = () => {
               </select>
             </div>
           </div>
-          <div className="idk">
-            <p>Product Name</p>
-            <p>Category</p>
-            <p>Price</p>
-            <p>Seller</p>
-            <p>Actions</p>
+          <div className="view">
+            <table className="admin-table">
+              <thead>
+                <tr className="idk">
+                  <th>Product Name</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Seller</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody className="users">
+                {products.map((i) => (
+                  <tr key={i.id} className="users-admin">
+                    <td className="product-name">
+                      <img src="/IMG/product.svg" alt="" /> {i.name}
+                    </td>
+                    <td className="category">
+                      <span>{i.category}</span>
+                    </td>
+                    <td>${i.price}</td>
+                    <td className="seller_name">{i.seller_name}</td>
+                    <td>
+                      <UaD i={i} onSuccess={refreshPage} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <div className="users">
-            {products.map((i) => (
-              <div key={i.id} className="users-admin">
-                <p>{i.name}</p>
-                <p>{i.category}</p>
-                <p>{i.price}</p>
-                <p>{i.seller_name}</p>
-                <UaD i={i} onSuccess={refreshPage} />
-              </div>
-            ))}
-          </div>
-          <div className="prev-next">
-            <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-              Prev
-            </button>
-            <span>
-              {page}/{totalPages}
-            </span>
-            <button
-              onClick={() => setPage(page + 1)}
-              disabled={page === totalPages}
-            >
-              Next
-            </button>
-          </div>
+        </div>
+        <div className="prev-next">
+          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+            Previous
+          </button>
+          <span>
+            {page}/{totalPages}
+          </span>
+          <button
+            onClick={() => setPage(page + 1)}
+            disabled={page === totalPages}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

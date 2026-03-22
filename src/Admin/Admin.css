@@ -1,34 +1,61 @@
+h1,p,h2{
+    margin: 0;
+    padding: 0;
+}
+
 .Admin{
     display: flex;
-    height: 100vh;
-    position:fixed;
+    width: 100%;
+    height: 90vh;
+    /* position:fixed; */
+
+}
+.Admin img{
+    width: 20px;
+    height: 20px;
 }
 .Admin-Filter{
-    width: 20vw;
+    padding-top: 20px;
+    width: 19%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    border-right: 1px solid #f4efef;
 }
 .Admin-Filter input{
     opacity: 0;
 }
 .Admin-Filter label{
     margin: 10px;
-    padding: 15px 5px;
+    padding: 10px 5px;
     border-radius: 10px;
-    background-color: red;
+   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     cursor: pointer;
-    color: white;
-    transition: all 0.3s ease-in-out;
+    color: #767373;
+    letter-spacing: -1px;
+    transition: all 0.5s ease-in-out;
+    text-transform: capitalize;
+    margin-right:26px;
 }
 .Admin-Filter label:hover{
-    background-color: rgb(91, 26, 26);
+    background-color:rgba(37, 99, 235, 0.9);
+     color: white;
+    transition: all 0.5s ease-in-out;
 }
 .Admin-Filter label.active {
-    background-color: black;
+     background-color: rgb(37, 99, 235);
+     color: white;
+     transition: all 0.5s ease-in-out;
 }
+
+
+
+
 .Admin-Content{
-    width: 80vw;
-    background-color: green;
+    width: 81%;
+    background-color: #F9FAFB;
+    height: 100vh;
+padding: 40px;
 }
 
 .part-admin{
@@ -37,48 +64,205 @@
     width: 100%;
     height: 100%;
 }
+
+
+
 .Top-part-admin{
     display: flex;
-    background-color: red;
     justify-content: space-between;
-    padding: 40px;
+    padding-bottom: 40px;
     align-items: center;
     
 }
 .Bottom-part-admin{
     display: flex;
     flex-direction: column;
-    background-color: blue;
-    /* justify-content: space-between; */
-    padding: 40px;
-    /* align-items: center; */
     height: 70%;
 }
 .Bottom-part-admin .conatainer{
-    background-color: brown;
-    padding: 0 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 10px 10px 0px 0px;    
+    padding: 20px 0px 0px;
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
 }
 .Bottom-part-admin .search{
-    background-color: red;
-}
-.Bottom-part-admin .idk{
+    position: relative;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
-    padding: 0 78px;
+    align-items: center;
+    padding: 0 20px;
+}
+.Bottom-part-admin .search input{
+    border-radius: 10px;
+    border: none;
+    padding: 10px 0px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 350%;
+    background-color: #dedcdc;
+     padding-left: 40px;
+    box-sizing: border-box;
+}
+.Bottom-part-admin .search  img{
+    position: absolute;
+    top: 8px;
+    left: 29px;
+    width: 20px;
+    height: 20px;
+
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-weight: 400;
+  
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 15px 20px;
+    text-align: left;
+     border: none;
+    
+}
+.admin-table th{
+    padding: 20px 30px;
+}
+.admin-table td{
+    padding: 20px 30px;
+    font-size: 0.8rem;
+    font-weight: 700;
 }
 
 
-.Bottom-part-admin .users-admin{
-    display: flex;
-    justify-content: space-between;
-    background-color: gold;
+.admin-table thead tr {
+    background-color: #f9f9f9;
+    color: #4e5155;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    background-color: #dedcdc;
+    margin: 10px; 
 }
-.users-admin p{
-    width: 16%;
-    background-color: aquamarine;
-    margin: 10px 0;
-    text-align: center;
+
+.admin-table tbody tr {
+    color: #4e5155;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+/*Products*/
+.Bottom-part-admin .product-name{
+    display: flex;
+    align-items: center;
+    gap:8px
+}
+.Bottom-part-admin .product-name img{
+    background-color: #d4d5d6;
+    padding: 8px;
+    border-radius: 10px;
+}
+.Bottom-part-admin .category span{
+    font-size: 0.6rem;
+    font-weight: 1000;
+    padding: 8px;
+    border-radius: 10px;
+    letter-spacing: 0px;
+    color: #2563EC;
+    background-color: #EFF6FF;
+}
+.Bottom-part-admin .seller_name{
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.Bottom-part-admin .editAdel{
+    display: flex;
+    justify-content: space-around;
+}
+.Bottom-part-admin .editAdel button{
+    padding: 7px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #2563EC;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;}
+
+.Bottom-part-admin .editAdel button:hover{
+    background-color: #1d4ed8;
+    box-shadow: #2563eb 0px 7px 29px 0px;
+    transition: all 0.3s ease;
+}
+
+/*Users*/
+.Bottom-part-admin .users-admin .Name span{
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+}
+.Bottom-part-admin .users-admin .email span{
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform:lowercase
+}
+.Bottom-part-admin .users-admin .role span{
+
+    font-size: 0.6rem;
+    font-weight: 1000;
+    padding: 8px 10px;
+    border-radius: 10px;
+    letter-spacing: 0px;
+    color: #2563EC;
+    color: #2a2929;
+background-color: #EFF6FF;
+}
+.Bottom-part-admin .users-admin .admin span{
+    color: #2563EC;
+    background-color: #EFF6FF;
+}
+
+
+/*Back*/
+
+.Bottom-part-admin .del button{
+    padding: 7px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+   background-color: #ef4444; 
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.Bottom-part-admin .del button:hover{
+    background-color: #b91c1c;  /* darker red */
+box-shadow: #ef4444 0px 4px 9px 0px;
+    transition: all 0.3s ease;
+}
+
+.Bottom-part-admin .prev-next{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 30px;
+    background-color: #eef0f1;
+    border-radius: 0 0 10px 10px;
+}
+.Bottom-part-admin .prev-next button{
+    padding: 7px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 300;
+    transition: all 0.3s ease;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.Bottom-part-admin .prev-next button:hover{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: all 0.3s ease;
 }

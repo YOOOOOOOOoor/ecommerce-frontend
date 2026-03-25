@@ -102,7 +102,12 @@ const Nav = ({ user, setUser }) => {
                 ref={dropdownRef}
                 className={`profile-dropdown ${show ? "show" : ""}`}
               >
-                <p className="profile-btn">Profile</p>
+                <p
+                  className="profile-btn"
+                  onClick={() => toast("Profile feature coming soon 🚧")}
+                >
+                  Profile
+                </p>
                 <button className="logout-btn" onClick={logout}>
                   Logout
                 </button>

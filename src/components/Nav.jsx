@@ -1,12 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./nav.css";
+import "../responsive/mobile.css";
 import toast from "react-hot-toast";
 import API from "../Api/api.js";
 import { useRef, useEffect, useState } from "react";
 
 const Nav = ({ user, setUser }) => {
   const navigate = useNavigate();
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   const logout = async () => {
     try {
@@ -48,8 +50,16 @@ const Nav = ({ user, setUser }) => {
           Ethio<span>Cart</span>
         </Link>
       </div>
+      <div
+        className={`three-dot ${mobileMenu ? "animate" : ""}`}
+        onClick={() => setMobileMenu(!mobileMenu)}
+      >
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
 
-      <div className="Left-side">
+      <div className={`Left-side ${mobileMenu ? "show" : ""}`}>
         <Link to="">
           <img src="/content/Home(2).svg" alt="" />
           <span>Home</span>

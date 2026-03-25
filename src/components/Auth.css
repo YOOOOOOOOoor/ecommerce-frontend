@@ -7,6 +7,7 @@
 /* LEFT BRAND PANEL */
 
 .auth_left {
+  position: relative;
   flex: 1;
   background: linear-gradient(135deg,#2563eb,#1d4ed8);
   color: white;
@@ -15,7 +16,15 @@
   justify-content: center;
   padding: 80px;
 }
-
+.auth_left .back_to_results{
+  position: absolute;
+  top:10%;
+  left: 2%;
+color: white;
+}
+.auth_left .back_to_results a{
+color: white;
+}
 .auth_left h1 {
   font-size: 3rem;
   margin-bottom: 10px;

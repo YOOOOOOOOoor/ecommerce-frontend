@@ -15,16 +15,18 @@ const Footer = () => {
             Experience the future of online shopping today.
           </p>
         </div>
-        <div>
-          <h3>Shop</h3>
-          <Link to="/products">Products</Link>
-          <Link to="/cart">Cart</Link>
-        </div>
-        <div>
-          <h3>Support</h3>
-          <Link to="/#">Contact</Link>
-          <Link to="/#">FAQ</Link>
-          <Link to="/#">About</Link>
+        <div className="Others">
+          <div>
+            <h3>Shop</h3>
+            <Link to="/products">Products</Link>
+            <Link to="/cart">Cart</Link>
+          </div>
+          <div>
+            <h3>Support</h3>
+            <Link to="/#">Contact</Link>
+            <Link to="/#">FAQ</Link>
+            <Link to="/#">About</Link>
+          </div>
         </div>
       </div>
       <div className="copyright">

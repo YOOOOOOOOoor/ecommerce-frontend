@@ -32,6 +32,10 @@ const Login = ({ setUser, user }) => {
   return (
     <div className="auth_split">
       <div className="auth_left">
+        <div className="back_to_results">
+          <img src="/content/left-arrow.svg" alt="" />
+          <Link to="/">Back to Home</Link>
+        </div>
         <h1>EthioCart</h1>
         <p>Welcome back shopper 🛍️</p>
       </div>

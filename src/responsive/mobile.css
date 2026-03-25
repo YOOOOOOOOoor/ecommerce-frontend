@@ -1,113 +1,339 @@
-/* =========================
-   MOBILE NAVBAR SYSTEM
-   ETHIOCART
-   ========================= */
-
-@media (max-width: 425px) {
-
-  /* NAV CONTAINER */
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    background: white;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+@media (max-width: 768px) {
+ body {
+    /* overflow-x: hidden; */
+    width: 100% !important;
+     box-sizing: border-box !important;
   }
 
-  .logo a {
-    font-size: 1.2rem;
-    font-weight: 800;
-    text-decoration: none;
-    color: #111827;
+  /*NavBar*/
+    nav{
+    box-sizing: border-box !important;
   }
 
-  /* HIDE DESKTOP LINKS */
-
-  nav .Left-side,
-  nav .Right-side {
-    display: none;
-  }
-
-  /* HAMBURGER */
-
-  .hamburger {
-    width: 26px;
-    height: 20px;
-    display: flex;
+  .three-dot {
+    display: flex !important;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     cursor: pointer;
+    margin-right: 30px;
+    gap: 5px;
   }
 
-  .hamburger span {
-    height: 3px;
-    width: 100%;
-    background: #111827;
-    border-radius: 4px;
-    transition: 0.3s;
-  }
-
-  /* ANIMATION */
-
-  .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translateY(8px);
-  }
-
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translateY(-8px);
-  }
-
-  /* MOBILE DRAWER */
-
-  .mobile_menu {
-    position: fixed;
-    top: 60px;
-    right: -100%;
-    width: 75%;
-    height: 100vh;
-    background: white;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.12);
-
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    gap: 22px;
-
-    transition: 0.35s ease;
-  }
-
-  .mobile_menu.show {
-    right: 0;
-  }
-
-  .mobile_menu a {
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #111827;
-  }
-
-  .mobile_menu a:hover {
-    color: #2563eb;
-  }
-
-  .mobile_logout {
-    padding: 10px;
-    border: none;
-    background: #ef4444;
-    color: white;
+  .three-dot div {
+    background-color: #2563EB !important;
+    width: 25px !important;
+    height: 4px !important;
+    transition: all 0.3s ease-in-out;
+  
     border-radius: 10px;
-    font-weight: 600;
-    margin-top: 10px;
   }
+  .animate div:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .animate div:nth-child(2) {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .animate div:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg) ;
+    transition: all 0.3s ease-in-out;
+
+  }
+  
+
+  
+     nav .Left-side {
+      border-radius: 0px !important;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      padding: 10px 0;
+      width: 100%;
+     visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start !important ;
+      padding-left: 15px;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 100;
+    background-color: white  !important;
+    transform: translateY(20px);
+    
+  }
+    nav .Left-side.show {
+      
+    transform: translateY(-10px);
+   opacity: 1;
+   visibility: visible;
+  }
+  nav .profile div{
+    right: -100px !important;
+  }
+
+
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/*Home*/
+.Home{
+  padding: 20px !important;
+}
+
+.First_LandingPage{
+  padding: 0 !important;
+  width: 100% !important;
+  padding-left: 20px !important;
+  
+}
+.First_LandingPage h1{
+    font-size: 50px !important;
+    font-weight:1000;
+    width: 100%;
+}
+.First_LandingPage p{
+    width: 95% !important;
+    font-size:1.2rem  !important;
+}
+.Second_LandingPage{
+  margin-top: 30px !important;
+  position: relative !important;
+  margin-bottom: 80px;
+}
+.Second_LandingPage .first{
+  margin-top: 30px !important;
+  display: flex !important;
+  flex-direction: column !important;
+
+}
+.Second_LandingPage .first h1{
+    font-size: 1.8rem !important;
+}
+.Second_LandingPage .first a{
+  position: absolute !important;
+  bottom: -70px;
+  z-index: 1;
+  width: 53%;
+  text-align: center;
+}
+
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/****products**** */
+.Products_page{
+/* overflow-x: hidden ; */
+width: 100% !important;
+
+}
+.Filter_and_Products{
+display: flex !important;
+flex-direction: column !important;
+width: 100% !important;
+padding: 0 !important;
+
+
+
+}
+.Filter{
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 94% !important;
+  height: auto !important;
+  padding: 20px !important;
+  margin-bottom: 80px !important;
+  margin: 0px 20px 80px 20px !important;
+  box-sizing: border-box !important;
+}
+.Filter div{
+  display: flex;
+  flex-direction: row !important;
+}
+.categoryFilter{
+  display: flex;
+  margin: 0 !important;
+  flex-wrap: wrap;
+  justify-content: flex-start !important;
+  /* background-color: red !important; */
+}
+.Filter .search{
+  display: flex;
+  justify-content: flex-start !important;
+  padding-left: 10px;
+}
+.Filter input[type="text"]{
+  width: 60% !important;
+  /* background-color: red !important; */
+  border: none !important;
+  padding-left: 50px !important;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+}
+.Filter img{
+    position: absolute;
+    top: 8px;
+    left: 17px !important;
+    width: 20px;
+    height: 20px;
+}
+.Filter .categoryFilter{
+  padding: 0px 5px !important;
+  display: flex;
+  flex-direction: column !important;
+
+}
+
+.categoryFilter .category{
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-start !important;
+}
+.categoryFilter label{
+padding: 4px 8px  !important;
+}
+.Filter .range{
+  display: flex;
+  flex-direction: column !important;
+}
+.Filter input{
+  width: 100%;
+}
+/* .whole_product{
+     width: 600px !important;
+     display: flex;
+     justify-content: space-around !important; 
+} */
+ .whole_product {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+  gap: 60px !important;
+}
+.product {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: flex !important  ;
+  align-self: center !important;
+}
+.product > img {
+  width: 100% !important;
+}
+/********************/
+/********************/
+/********************/
+/********************/
+/* Product Detail */
+.products_detail .inside_detail{
+  display: flex;
+  flex-direction: column !important;
+}
+.inside_detail .left{
+    width: 100% !important;
+    /* height:80vh; */
+
+}
+.inside_detail .right{
+    gap: 10px !important;
+   
+}
+.inside_detail .Add_to_cart{
+    width: 70vw !important;
+    font-size: 1.2rem !important;
+    padding: 20px !important;
+}
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/*Seller*/
+.Whole div.form{
+  width: 120% !important;
+}
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/****************************************************************** */
+/*cart*/
+.cart_and_total{
+  /* background-color: red !important; */
+  display: flex !important;
+  flex-direction: column !important;
+  gap:50px !important;
+}
+.cart_and_total .products{
+  width: 100% !important;
+  display: flex;
+  flex-direction: column !important;
+}
+.cart_and_total{
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+.cart_and_total .cart_empty{
+  margin-top: 20px !important;
+  /* background-color: red !important; */
+}
+.cart_and_total .empty{
+  /* background-color: blue !important; */
+  width: 100% !important;
+}
+.cart_and_total .total{
+  /* background-color: blue !important; */
+  width: 80% !important;
+}
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/*Footer*/
+
+
+.footers{
+  /* background-color: blue !important; */
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
+}
+.footers .Nav-Home-page{
+  /* background-color: red !important; */
+  width: 92vw !important;
+  padding: 10px 30px !important;
+}
+.footers .Others{
+  /* background-color: aqua; */
+  padding: 0 40px 30px 0px !important;
+  width: 90vw !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+}
+
+/**************************************************************************/
+/**************************************************************************/
+/**************************************************************************/
+/**************************************************************************/
+/**************************************************************************/
+/**************************************************************************/
+/**************************************************************************/
+/**************************************************************************/
+/*****Admin*******/
+
 
 }

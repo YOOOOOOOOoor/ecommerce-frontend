@@ -57,47 +57,49 @@ function AppContent() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <>
+    <div className="app-container">
       <Toaster position="top-right" /> {/* <-- keep this */}
       {!hideNav && <Nav user={user} setUser={setUser} />}
-      <Routes>
-        <Route path="/" element={<Home user={user} setUser={setUser} />} />
-        <Route
-          path="/profile"
-          element={<Profile user={user} setUser={setUser} />}
-        />
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home user={user} setUser={setUser} />} />
+          <Route
+            path="/profile"
+            element={<Profile user={user} setUser={setUser} />}
+          />
 
-        <Route
-          path="/login"
-          element={<Login user={user} setUser={setUser} />}
-        />
-        <Route
-          path="/register"
-          element={<Register user={user} setUser={setUser} />}
-        />
-        <Route
-          path="/products"
-          element={<Products user={user} setUser={setUser} />}
-        />
-        <Route
-          path="/products/:id"
-          element={<ProductDetail user={user} setUser={setUser} />}
-        />
-        <Route
-          path="/carts"
-          element={<Carts user={user} setUser={setUser} />}
-        />
-        <Route
-          path="/seller"
-          element={<Seller user={user} setUser={setUser} />}
-        />
-        <Route
-          path="/admin"
-          element={<Admin user={user} setUser={setUser} />}
-        />
-      </Routes>
+          <Route
+            path="/login"
+            element={<Login user={user} setUser={setUser} />}
+          />
+          <Route
+            path="/register"
+            element={<Register user={user} setUser={setUser} />}
+          />
+          <Route
+            path="/products"
+            element={<Products user={user} setUser={setUser} />}
+          />
+          <Route
+            path="/products/:id"
+            element={<ProductDetail user={user} setUser={setUser} />}
+          />
+          <Route
+            path="/carts"
+            element={<Carts user={user} setUser={setUser} />}
+          />
+          <Route
+            path="/seller"
+            element={<Seller user={user} setUser={setUser} />}
+          />
+          <Route
+            path="/admin"
+            element={<Admin user={user} setUser={setUser} />}
+          />
+        </Routes>
+      </main>
       {!hideFooter && <Footer />}
-    </>
+    </div>
   );
 }
 

@@ -10,6 +10,9 @@ h1,p,h2{
     /* position:fixed; */
 
 }
+.Admin .show{
+    display: none;
+}
 .Admin img{
     width: 20px;
     height: 20px;

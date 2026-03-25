@@ -34,6 +34,9 @@ const Products = () => {
     fetchProducts();
   }, [filters, page]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [filters]);
   // Add product to cart
   const addCarts = async (id) => {
     try {
@@ -85,19 +88,21 @@ const Products = () => {
 
           <div className="categoryFilter">
             <h4>Category</h4>
-            {["all", "electronics", "shoes", "clothes"].map((i) => (
-              <label key={i}>
-                <input
-                  type="radio"
-                  value={i}
-                  checked={filters.category === i}
-                  onChange={(e) =>
-                    setFilters({ ...filters, category: e.target.value })
-                  }
-                />
-                <span>{i.charAt(0).toUpperCase() + i.slice(1)}</span>
-              </label>
-            ))}
+            <div className="category">
+              {["all", "electronics", "shoes", "clothes"].map((i) => (
+                <label key={i}>
+                  <input
+                    type="radio"
+                    value={i}
+                    checked={filters.category === i}
+                    onChange={(e) =>
+                      setFilters({ ...filters, category: e.target.value })
+                    }
+                  />
+                  <span>{i.charAt(0).toUpperCase() + i.slice(1)}</span>
+                </label>
+              ))}
+            </div>
           </div>
 
           <div className="range">

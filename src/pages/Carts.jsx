@@ -101,20 +101,9 @@ const Carts = ({ user }) => {
               </div>
             ))
           ) : (
-            <div
-              style={{
-                marginTop: "120px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                width: "100%",
-                alignItems: "center",
-                height: "70vh",
-                boxSizing: "border-box",
-                color: "gray",
-              }}
-            >
+            <div className="cart_empty">
               <div
+                className="empty"
                 style={{
                   display: "flex",
                   flexDirection: "column",

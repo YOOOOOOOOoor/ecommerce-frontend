@@ -8,6 +8,7 @@ const Admin = ({ user }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!user) navigate("/login");
     if (user.role !== "admin") {
       navigate("/");
     }
@@ -29,6 +30,7 @@ const Admin = ({ user }) => {
           </label>
         ))}
       </div>
+      <div className="show">jfroi</div>
       <div className="Admin-Content">
         {active === "user" && <Users />}
         {active === "products" && <Products />}

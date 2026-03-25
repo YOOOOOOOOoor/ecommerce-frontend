@@ -107,15 +107,14 @@ const VaE = ({ refershKey }) => {
           ))
         ) : (
           <div
-            className=""
             style={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-around",
               // backgroundColor: "red",
-              width: "100%",
+              // width: "100%",
               alignItems: "center",
-              height: "50vh",
+              // height: "50vh",
               boxSizing: "border-box",
               alignSelf: "center",
             }}
@@ -127,7 +126,7 @@ const VaE = ({ refershKey }) => {
                 alignItems: "center",
                 // backgroundColor: "blue",
                 height: "100%",
-                width: "30%",
+                // width: "30%",
                 boxSizing: "border-box",
                 // justifyContent: "space-around",
                 gap: "20px",
@@ -144,7 +143,7 @@ const VaE = ({ refershKey }) => {
                 Create your first product to start selling and grow your
                 business.
               </p>
-              <Add refershKey={refershKey} />
+              <Add onSuccess={fetchProducts} />
             </div>
           </div>
         )}

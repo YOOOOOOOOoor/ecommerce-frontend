@@ -972,6 +972,7 @@ main .Filter_and_Products{
     padding: 30px;
     width: 100%;
     box-sizing: border-box;
+   
 }
 button.Add_products{
     background-color: #2563eb;
@@ -1001,7 +1002,7 @@ button.Add_products:hover{
     flex-wrap: wrap;
     gap: 10px;
     flex-direction: column;
-    /* background-color: red; */
+    /* background-color: red !important; */
 }
 .Edit_and_delete .editAdel{
     display: flex;
@@ -1034,10 +1035,19 @@ button.Add_products:hover{
     margin-bottom: 90px;
     padding:30px 40px;
     box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue !important; */
 } 
  /*If pagination is needed*/
  /*Pagination*/
-
+.seller .product{
+    /* background-color: red; */
+    width: 30%;
+    /* height: 100px; */
+}
 
 .Whole{
     display: flex;

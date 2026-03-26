@@ -18,8 +18,8 @@ const Seller = ({ user }) => {
   };
   return (
     <div className="Seller">
-      <Add onSuccess={refreshItem} />
-      <VaE refershKey={refershKey} />
+      <Add onSuccess={refreshItem} user={user} />
+      <VaE refershKey={refershKey} user={user} />
     </div>
   );
 };

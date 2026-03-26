@@ -1,10 +1,17 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import axios from "axios";
 import API from "../../Api/api.js";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
-const Add = ({ onSuccess }) => {
+const Add = ({ onSuccess, user }) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   const [form, setForm] = useState({
     name: "",
     description: "",

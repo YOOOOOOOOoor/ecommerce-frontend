@@ -2,8 +2,16 @@ import React, { useState, useEffect } from "react";
 import API from "../../Api/api.js";
 import toast from "react-hot-toast"; // <-- import toast
 import Add from "./Add.jsx";
+import { useNavigate } from "react-router-dom";
 
-const VaE = ({ refershKey }) => {
+const VaE = ({ refershKey, user }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   const [products, setProducts] = useState([]);
   const [form, setForm] = useState({
     name: "",

@@ -152,7 +152,7 @@ const VaE = ({ refershKey, user }) => {
                 Create your first product to start selling and grow your
                 business.
               </p>
-              <Add onSuccess={fetchProducts} />
+              <Add onSuccess={fetchProducts} user={user} />
             </div>
           </div>
         )}

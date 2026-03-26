@@ -71,8 +71,10 @@ const VaE = ({ refershKey, user }) => {
   };
 
   useEffect(() => {
-    fetchProducts();
-  }, [refershKey, page]);
+    if (user) {
+      fetchProducts();
+    }
+  }, [refershKey, page, user]);
 
   const deleteProduct = async (id) => {
     try {

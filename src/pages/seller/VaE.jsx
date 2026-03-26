@@ -54,9 +54,7 @@ const VaE = ({ refershKey, user }) => {
       toast.success("Product updated successfully!"); // <-- toast success
     } catch (error) {
       console.error(error.message);
-      if (!user) {
-        toast.error("You are not logged in.");
-      }
+
       toast.error("Failed to update product."); // <-- toast error
     }
   };

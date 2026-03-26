@@ -1,10 +1,18 @@
 import React from "react";
 import Add from "./seller/Add";
 import VaE from "./seller/VaE";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Seller = () => {
+const Seller = ({ user }) => {
+  const navigate = useNavigate();
   const [refershKey, setRefreshKey] = useState(0);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   const refreshItem = async () => {
     setRefreshKey((prev) => prev + 1);
   };

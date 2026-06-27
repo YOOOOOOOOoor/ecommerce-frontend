@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import API from "../../Api/api.js";
 import toast from "react-hot-toast"; // <-- import toast
 import Add from "./Add.jsx";
+import ImageWithSkeleton from "../../components/ImageWithSkeleton.jsx";
 import { useNavigate } from "react-router-dom";
 
 const VaE = ({ refershKey, user }) => {
@@ -97,7 +98,7 @@ const VaE = ({ refershKey, user }) => {
             <div key={product.id} className="product">
               <p className="Category">{product.category}</p>
               <div className="IMG">
-                <img src={product.image} alt={product.name} />
+               <ImageWithSkeleton src={product.image} alt={product.name} />
               </div>
               <div className="Other_parts">
                 <div>

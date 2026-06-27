@@ -16,35 +16,21 @@ const Products = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [totalProducts, setTotalProducts] = useState(0);
 
-  // const fetchProducts = async () => {
-  //   try {
-  //     const res = await API.get("/products", {
-  //       params: { ...filters, page, limit: 6 },
-  //     });
-  //     setProducts(res.data.products);
-  //     setTotalPages(res.data.totalPages);
-  //     setTotalProducts(res.data.total);
-  //   } catch (error) {
-  //     console.error(error.message);
-  //     toast.error("Failed to fetch products."); // <-- toast error
-  //   }
-  // };
-
   const fetchProducts = async () => {
-  try {
-    const res = await API.get("/products", {
-      params: { ...filters, page, limit: 6 },
-    });
+    try {
+      const res = await API.get("/products", {
+        params: { ...filters, page, limit: 6 },
+      });
+      setProducts(res.data.products);
+      setTotalPages(res.data.totalPages);
+      setTotalProducts(res.data.total);
+    } catch (error) {
+      console.error(error.message);
+      toast.error("Failed to fetch products."); // <-- toast error
+    }
+  };
 
-    console.log("Products response:", res.data);
 
-    setProducts(res.data.products);
-    setTotalPages(res.data.totalPages);
-    setTotalProducts(res.data.total);
-  } catch (error) {
-    console.error("Products error:", error.response?.data || error.message);
-  }
-};
 
   useEffect(() => {
     fetchProducts();

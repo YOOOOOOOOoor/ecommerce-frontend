@@ -24,115 +24,58 @@ const Home = () => {
     }
   };
 useEffect(() => {
-  let seconds = 60;
-  let expanded = true;
+  const toastId = toast.custom(
+    (t) => (
+      <div
+        style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          background: "#111827",
+          color: "white",
+          padding: "20px",
+          borderRadius: "14px",
+          width: "360px",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+          zIndex: 9999,
+          textAlign: "center",
+        }}
+      >
+        {/* Close button */}
+        <button
+          onClick={() => toast.dismiss(t.id)}
+          style={{
+            position: "absolute",
+            top: 10,
+            right: 12,
+            background: "transparent",
+            border: "none",
+            color: "#aaa",
+            fontSize: "18px",
+            cursor: "pointer",
+          }}
+        >
+          ✕
+        </button>
 
-  const renderToast = (t) => (
-    <div
-      style={{
-        background: "#111827",
-        color: "white",
-        padding: "16px",
-        borderRadius: "12px",
-        width: "360px",
-        boxShadow: "0 10px 30px rgba(0,0,0,.3)",
-        position: "relative",
-        cursor: "pointer",
-      }}
-      onClick={(e) => {
-        // prevent toggle when clicking close button
-        if (e.target.dataset.close) return;
-        expanded = !expanded;
+        <h3 style={{ marginBottom: 10 }}>⚡ Waking up server</h3>
 
-        toast.custom(renderToast, {
-          id: t.id,
-          duration: Infinity,
-        });
-      }}
-    >
-      {/* Close Button */}
-   <button
-  data-close="true"
-  onClick={(e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    toast.dismiss(t.id);
-  }}
-  style={{
-    position: "absolute",
-    top: 8,
-    right: 10,
-    background: "transparent",
-    border: "none",
-    color: "#aaa",
-    cursor: "pointer",
-    fontSize: "18px",
-    zIndex: 9999,
-  }}
->
-  ✕
-</button>
-
-      {expanded ? (
-        <>
-          <strong>⚡ First Visit?</strong>
-
-          <p style={{ marginTop: 8, lineHeight: 1.5 }}>
-            I'm using <b>Render's free hosting</b>, so the first visit can take
-            up to one minute.
-            <br />
-            <br />
-            Feel free to explore the page and everything should be ready
-            shortly.
-          </p>
-
-          <p style={{ marginTop: 10, color: "#60a5fa", fontWeight: "bold" }}>
-            🚀 Waking up the server... {seconds}s
-          </p>
-
-          <small style={{ color: "#9ca3af" }}>
-            Click to collapse ▲
-          </small>
-        </>
-      ) : (
-        <>
-          <strong style={{ color: "#60a5fa" }}>
-            🚀 Waking up... {seconds}s
-          </strong>
-
+        <p style={{ fontSize: "14px", lineHeight: 1.5, color: "#d1d5db" }}>
+          I'm using Render's free hosting, so the first request can take up to a minute.
           <br />
+          Please wait while everything loads.
+        </p>
 
-          <small style={{ color: "#9ca3af" }}>
-            Click to expand ▼
-          </small>
-        </>
-      )}
-    </div>
+        <p style={{ marginTop: 15, color: "#60a5fa", fontWeight: "bold" }}>
+          🚀 Please wait...
+        </p>
+      </div>
+    ),
+    { duration: 8000 } // auto close after 8s
   );
 
-  const toastId = toast.custom(renderToast, {
-    duration: Infinity,
-  });
-
-  const interval = setInterval(() => {
-    seconds--;
-
-    toast.custom(renderToast, {
-      id: toastId,
-      duration: Infinity,
-    });
-
-    if (seconds <= 0) {
-      clearInterval(interval);
-      toast.dismiss(toastId);
-      toast.success("✅ Server is awake!");
-    }
-  }, 1000);
-
-  return () => {
-    clearInterval(interval);
-    toast.dismiss(toastId);
-  };
+  return () => toast.dismiss(toastId);
 }, []);
   useEffect(() => {
     fetchProducts();

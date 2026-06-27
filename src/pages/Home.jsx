@@ -65,25 +65,7 @@ const Home = () => {
           position: "relative",
         }}
       >
-        {/* Close button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            toast.dismiss(t.id);
-          }}
-          style={{
-            position: "absolute",
-            top: 8,
-            right: 10,
-            background: "transparent",
-            border: "none",
-            color: "#aaa",
-            cursor: "pointer",
-            fontSize: "18px",
-          }}
-        >
-          ✕
-        </button>
+       
 
         {/* Click to collapse/expand */}
         <div onClick={() => setExpanded((e) => !e)} style={{ cursor: "pointer" }}>

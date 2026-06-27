@@ -698,7 +698,7 @@ main .Filter_and_Products{
     overflow: hidden;
     height: 200px;
     width: 100%;
-    background-color: red;
+    /* background-color: red; */
 }
 .product img{
     /* width:240px; */

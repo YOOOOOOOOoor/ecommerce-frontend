@@ -28,82 +28,105 @@ const Home = () => {
 
 
   useEffect(() => {
-  // 👇 run only once per browser session
   const alreadyShown = sessionStorage.getItem("server-toast-shown");
-
   if (alreadyShown) return;
 
   sessionStorage.setItem("server-toast-shown", "true");
 
-  let seconds = 60;
+  const ToastContent = ({ t }) => {
+    const [expanded, setExpanded] = React.useState(true);
+    const [seconds, setSeconds] = React.useState(60);
 
-  const renderToast = (t) => (
-    <div
-      style={{
-        background: "#111827",
-        color: "white",
-        padding: "16px",
-        borderRadius: "12px",
-        width: "340px",
-        boxShadow: "0 10px 30px rgba(0,0,0,.3)",
-        position: "relative",
-      }}
-    >
-      <button
-        onClick={() => toast.dismiss(t.id)}
+    React.useEffect(() => {
+      const interval = setInterval(() => {
+        setSeconds((s) => {
+          if (s <= 1) {
+            clearInterval(interval);
+            toast.dismiss(t.id);
+            toast.success("✅ Server is awake!");
+            return 0;
+          }
+          return s - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }, []);
+
+    return (
+      <div
         style={{
-          position: "absolute",
-          top: 8,
-          right: 10,
-          background: "transparent",
-          border: "none",
-          color: "#aaa",
-          cursor: "pointer",
-          fontSize: "18px",
+          background: "#111827",
+          color: "white",
+          padding: "16px",
+          borderRadius: "12px",
+          width: "340px",
+          boxShadow: "0 10px 30px rgba(0,0,0,.3)",
+          position: "relative",
         }}
       >
-        ✕
-      </button>
+        {/* Close button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            toast.dismiss(t.id);
+          }}
+          style={{
+            position: "absolute",
+            top: 8,
+            right: 10,
+            background: "transparent",
+            border: "none",
+            color: "#aaa",
+            cursor: "pointer",
+            fontSize: "18px",
+          }}
+        >
+          ✕
+        </button>
 
-      <strong>⚡ First Visit?</strong>
+        {/* Click to collapse/expand */}
+        <div onClick={() => setExpanded((e) => !e)} style={{ cursor: "pointer" }}>
+          {expanded ? (
+            <>
+              <strong>⚡ First Visit?</strong>
 
-      <p style={{ marginTop: 8, lineHeight: 1.5 }}>
-        I'm using <b>Render's free hosting</b>, so the first visit can take up
-        to one minute.
-        <br />
-        <br />
-        Feel free to explore — everything will load shortly.
-      </p>
+              <p style={{ marginTop: 8, lineHeight: 1.5 }}>
+                I'm using <b>Render's free hosting</b>, so the first visit can take up to one minute.
+                <br />
+                <br />
+                Feel free to explore — everything will load shortly.
+              </p>
 
-      <p style={{ marginTop: 10, color: "#60a5fa", fontWeight: "bold" }}>
-        🚀 Waking up the server... {seconds}s
-      </p>
-    </div>
-  );
+              <p style={{ marginTop: 10, color: "#60a5fa", fontWeight: "bold" }}>
+                🚀 Waking up the server... {seconds}s
+              </p>
 
-  const toastId = toast.custom(renderToast, {
+              <small style={{ color: "#9ca3af" }}>
+                Click to collapse ▲
+              </small>
+            </>
+          ) : (
+            <>
+              <strong style={{ color: "#60a5fa" }}>
+                🚀 Waking up... {seconds}s
+              </strong>
+
+              <br />
+
+              <small style={{ color: "#9ca3af" }}>
+                Click to expand ▼
+              </small>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  toast.custom((t) => <ToastContent t={t} />, {
     duration: Infinity,
   });
-
-  const interval = setInterval(() => {
-    seconds--;
-
-    toast.custom(renderToast, {
-      id: toastId,
-      duration: Infinity,
-    });
-
-    if (seconds <= 0) {
-      clearInterval(interval);
-      toast.dismiss(toastId);
-      toast.success("✅ Server is awake!");
-    }
-  }, 1000);
-
-  return () => {
-    clearInterval(interval);
-    toast.dismiss(toastId);
-  };
 }, []);
 
   

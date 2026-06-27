@@ -24,6 +24,49 @@ const Home = () => {
     }
   };
   useEffect(() => {
+  // Show only once per browser session
+  if (sessionStorage.getItem("server-toast-shown")) return;
+
+  sessionStorage.setItem("server-toast-shown", "true");
+
+  let seconds = 60;
+
+  const id = toast.loading(
+    `🚀 Waking up the server... ${seconds}s`,
+    {
+      duration: 45000,
+    }
+  );
+
+  const timer = setInterval(() => {
+    seconds--;
+
+    toast.loading(
+      `🚀 Waking up the server... ${seconds}s
+
+I'm using Render's free hosting, so the first visit can take up to one minute.
+
+Feel free to explore the page and everything should be ready shortly.`,
+      {
+        id,
+        duration: 45000,
+      }
+    );
+
+    if (seconds <= 0) {
+      clearInterval(timer);
+      toast.success("✅ Server should now be ready!", {
+        id,
+        duration: 3000,
+      });
+    }
+  }, 1000);
+
+  return () => {
+    clearInterval(timer);
+  };
+}, []);
+  useEffect(() => {
     fetchProducts();
   }, []);
 

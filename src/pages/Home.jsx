@@ -24,47 +24,87 @@ const Home = () => {
     }
   };
   useEffect(() => {
-  // Show only once per browser session
   if (sessionStorage.getItem("server-toast-shown")) return;
 
   sessionStorage.setItem("server-toast-shown", "true");
 
   let seconds = 60;
+  let expanded = true;
 
-  const id = toast.loading(
-    `🚀 Waking up the server... ${seconds}s`,
-    {
-      duration: 45000,
-    }
-  );
+  const renderToast = (id) =>
+    toast(
+      (t) => (
+        <div style={{ minWidth: "320px" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontWeight: 600,
+            }}
+          >
+            <span>🚀 Waking up the server... {seconds}s</span>
+
+            <button
+              onClick={() => {
+                expanded = !expanded;
+                renderToast(t.id);
+              }}
+              style={{
+                border: "none",
+                background: "transparent",
+                cursor: "pointer",
+                fontSize: "16px",
+              }}
+            >
+              {expanded ? "▲" : "▼"}
+            </button>
+          </div>
+
+          {expanded && (
+            <div
+              style={{
+                marginTop: "8px",
+                color: "#666",
+                fontSize: "14px",
+                lineHeight: "1.4",
+              }}
+            >
+              I'm using Render's free hosting, so the first visit can take up
+              to one minute.
+              <br />
+              <br />
+              Feel free to explore the page and everything should be ready
+              shortly.
+            </div>
+          )}
+        </div>
+      ),
+      {
+        id,
+        duration: 60000,
+        icon: "",
+      }
+    );
+
+  const toastId = toast.loading("Loading...");
+
+  renderToast(toastId);
 
   const timer = setInterval(() => {
     seconds--;
 
-    toast.loading(
-      `🚀 Waking up the server... ${seconds}s
-
-I'm using Render's free hosting, so the first visit can take up to one minute.
-
-Feel free to explore the page and everything should be ready shortly.`,
-      {
-        id,
-        duration: 45000,
-      }
-    );
+    renderToast(toastId);
 
     if (seconds <= 0) {
       clearInterval(timer);
-      toast.success("✅ Server should now be ready!", {
-        id,
-        duration: 3000,
+      toast.success("✅ Server is ready!", {
+        id: toastId,
       });
     }
   }, 1000);
 
-  return () => {
-    clearInterval(timer);
-  };
+  return () => clearInterval(timer);
 }, []);
   useEffect(() => {
     fetchProducts();

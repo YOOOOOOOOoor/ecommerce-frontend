@@ -23,51 +23,103 @@ const Home = () => {
       console.error(error.message);
     }
   };
-useEffect(() => {
-  const toastId = toast.custom((t) => (
+
+
+
+
+  useEffect(() => {
+  let seconds = 60;
+  let expanded = true;
+
+  const renderToast = (t) => (
     <div
       style={{
         background: "#111827",
         color: "white",
-        padding: "18px",
-        borderRadius: "14px",
-        width: "340px",
-        boxShadow: "0 20px 50px rgba(0,0,0,0.4)",
-        textAlign: "center",
+        padding: "16px",
+        borderRadius: "12px",
+        width: "360px",
+        boxShadow: "0 10px 30px rgba(0,0,0,.3)",
         position: "relative",
+        cursor: "pointer",
+      }}
+      onClick={(e) => {
+        // prevent toggle when clicking close button
+        if (e.target.dataset.close) return;
+        expanded = !expanded;
+
+        toast.custom(renderToast, {
+          id: t.id,
+          duration: Infinity,
+        });
       }}
     >
-      {/* Close */}
-      <button
-        onClick={() => toast.dismiss(t.id)}
-        style={{
-          position: "absolute",
-          top: 10,
-          right: 10,
-          background: "transparent",
-          border: "none",
-          color: "#aaa",
-          fontSize: "18px",
-          cursor: "pointer",
-        }}
-      >
-        ✕
-      </button>
 
-      <h3 style={{ marginBottom: 10 }}>⚡ Waking up server</h3>
+      {expanded ? (
+        <>
+          <strong>⚡ First Visit?</strong>
 
-      <p style={{ fontSize: "14px", color: "#d1d5db", lineHeight: 1.5 }}>
-        First request may take up to a minute because the backend is on free hosting.
-      </p>
+          <p style={{ marginTop: 8, lineHeight: 1.5 }}>
+            I'm using <b>Render's free hosting</b>, so the first visit can take
+            up to one minute.
+            <br />
+            <br />
+            Feel free to explore the page and everything should be ready
+            shortly.
+          </p>
 
-      <p style={{ marginTop: 12, color: "#60a5fa", fontWeight: "bold" }}>
-        🚀 Loading...
-      </p>
+          <p style={{ marginTop: 10, color: "#60a5fa", fontWeight: "bold" }}>
+            🚀 Waking up the server... {seconds}s
+          </p>
+
+          <small style={{ color: "#9ca3af" }}>
+            Click to collapse ▲
+          </small>
+        </>
+      ) : (
+        <>
+          <strong style={{ color: "#60a5fa" }}>
+            🚀 Waking up... {seconds}s
+          </strong>
+
+          <br />
+
+          <small style={{ color: "#9ca3af" }}>
+            Click to expand ▼
+          </small>
+        </>
+      )}
     </div>
-  ));
+  );
 
-  return () => toast.dismiss(toastId);
+  const toastId = toast.custom(renderToast, {
+    duration: Infinity,
+  });
+
+  const interval = setInterval(() => {
+    seconds--;
+
+    toast.custom(renderToast, {
+      id: toastId,
+      duration: Infinity,
+    });
+
+    if (seconds <= 0) {
+      clearInterval(interval);
+      toast.dismiss(toastId);
+      toast.success("✅ Server is awake!");
+    }
+  }, 1000);
+
+  return () => {
+    clearInterval(interval);
+    toast.dismiss(toastId);
+  };
 }, []);
+
+
+
+  
   useEffect(() => {
     fetchProducts();
   }, []);

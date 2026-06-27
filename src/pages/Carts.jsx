@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../Api/api.js";
-import ImageWithSkeleton from "../../components/ImageWithSkeleton.jsx";
+import ImageWithSkeleton from "../components/ImageWithSkeleton.jsx";
 import toast from "react-hot-toast"; // <-- import toast
 
 const Carts = ({ user }) => {

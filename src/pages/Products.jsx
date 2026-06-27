@@ -134,7 +134,8 @@ const Products = () => {
             <span> Showing {totalProducts} results</span>
           </div>
           <div className="whole_product">
-            {products.map((product) => (
+           {Array.isArray(products) &&
+  products.map((product) => (
               <div key={product.id} className="product">
                 <p className="Category">{product.category}</p>
                 <div className="IMG">

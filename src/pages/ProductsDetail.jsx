@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import API from "../Api/api.js";
 import toast from "react-hot-toast"; // <-- import toast
+import ImageWithSkeleton from "../components/ImageWithSkeleton";
 
 const ProductsDetail = () => {
   const { id } = useParams();
@@ -72,7 +73,7 @@ const ProductsDetail = () => {
           </div>
           <div className="inside_detail">
             <div className="left">
-              <img src={product.image} alt={product.name} />
+             <ImageWithSkeleton src={product.image} alt={product.name} />
             </div>
             <div className="right">
               <p className="category">{product.category}</p>

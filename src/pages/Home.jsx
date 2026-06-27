@@ -51,25 +51,27 @@ useEffect(() => {
       }}
     >
       {/* Close Button */}
-      <button
-        data-close="true"
-        onClick={(e) => {
-          e.stopPropagation();
-          toast.dismiss(t.id);
-        }}
-        style={{
-          position: "absolute",
-          top: 8,
-          right: 10,
-          background: "transparent",
-          border: "none",
-          color: "#aaa",
-          cursor: "pointer",
-          fontSize: "18px",
-        }}
-      >
-        ✕
-      </button>
+   <button
+  data-close="true"
+  onClick={(e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    toast.dismiss(t.id);
+  }}
+  style={{
+    position: "absolute",
+    top: 8,
+    right: 10,
+    background: "transparent",
+    border: "none",
+    color: "#aaa",
+    cursor: "pointer",
+    fontSize: "18px",
+    zIndex: 9999,
+  }}
+>
+  ✕
+</button>
 
       {expanded ? (
         <>

@@ -24,56 +24,47 @@ const Home = () => {
     }
   };
 useEffect(() => {
-  const toastId = toast.custom(
-    (t) => (
-      <div
+  const toastId = toast.custom((t) => (
+    <div
+      style={{
+        background: "#111827",
+        color: "white",
+        padding: "18px",
+        borderRadius: "14px",
+        width: "340px",
+        boxShadow: "0 20px 50px rgba(0,0,0,0.4)",
+        textAlign: "center",
+        position: "relative",
+      }}
+    >
+      {/* Close */}
+      <button
+        onClick={() => toast.dismiss(t.id)}
         style={{
-          position: "fixed",
-          top: "0%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          background: "#111827",
-          color: "white",
-          padding: "20px",
-          borderRadius: "14px",
-          width: "360px",
-          boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
-          zIndex: 9999,
-          textAlign: "center",
+          position: "absolute",
+          top: 10,
+          right: 10,
+          background: "transparent",
+          border: "none",
+          color: "#aaa",
+          fontSize: "18px",
+          cursor: "pointer",
         }}
       >
-        {/* Close button */}
-        <button
-          onClick={() => toast.dismiss(t.id)}
-          style={{
-            position: "absolute",
-            top: 10,
-            right: 12,
-            background: "transparent",
-            border: "none",
-            color: "#aaa",
-            fontSize: "18px",
-            cursor: "pointer",
-          }}
-        >
-          ✕
-        </button>
+        ✕
+      </button>
 
-        <h3 style={{ marginBottom: 10 }}>⚡ Waking up server</h3>
+      <h3 style={{ marginBottom: 10 }}>⚡ Waking up server</h3>
 
-        <p style={{ fontSize: "14px", lineHeight: 1.5, color: "#d1d5db" }}>
-          I'm using Render's free hosting, so the first request can take up to a minute.
-          <br />
-          Please wait while everything loads.
-        </p>
+      <p style={{ fontSize: "14px", color: "#d1d5db", lineHeight: 1.5 }}>
+        First request may take up to a minute because the backend is on free hosting.
+      </p>
 
-        <p style={{ marginTop: 15, color: "#60a5fa", fontWeight: "bold" }}>
-          🚀 Please wait...
-        </p>
-      </div>
-    ),
-    { duration: 8000 } // auto close after 8s
-  );
+      <p style={{ marginTop: 12, color: "#60a5fa", fontWeight: "bold" }}>
+        🚀 Loading...
+      </p>
+    </div>
+  ));
 
   return () => toast.dismiss(toastId);
 }, []);

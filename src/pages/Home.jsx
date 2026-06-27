@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ImageWithSkeleton from "../components/ImageWithSkeleton";
 import "../responsive/mobile.css";
 import API from "../Api/api.js";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -30,8 +32,10 @@ const Home = () => {
       await API.post("/products/add", {
         id,
       });
+      toast.success("Product added to cart!");
     } catch (error) {
       console.error(error.message);
+      toast.error("Login or Register to add product");
     }
   };
   return (
@@ -64,7 +68,7 @@ const Home = () => {
               <div key={product.id} className="product">
                 <p className="Category">{product.category}</p>
                 <div className="IMG">
-                  <img src={product.image} alt={product.name} />
+                    <ImageWithSkeleton src={product.image} alt={product.name} />
                 </div>
                 <div className="Other_parts">
                   <div>

@@ -28,8 +28,14 @@ const Home = () => {
 
 
   useEffect(() => {
+  // 👇 run only once per browser session
+  const alreadyShown = sessionStorage.getItem("server-toast-shown");
+
+  if (alreadyShown) return;
+
+  sessionStorage.setItem("server-toast-shown", "true");
+
   let seconds = 60;
-  let expanded = true;
 
   const renderToast = (t) => (
     <div
@@ -38,57 +44,40 @@ const Home = () => {
         color: "white",
         padding: "16px",
         borderRadius: "12px",
-        width: "360px",
+        width: "340px",
         boxShadow: "0 10px 30px rgba(0,0,0,.3)",
         position: "relative",
-        cursor: "pointer",
-      }}
-      onClick={(e) => {
-        // prevent toggle when clicking close button
-        if (e.target.dataset.close) return;
-        expanded = !expanded;
-
-        toast.custom(renderToast, {
-          id: t.id,
-          duration: Infinity,
-        });
       }}
     >
+      <button
+        onClick={() => toast.dismiss(t.id)}
+        style={{
+          position: "absolute",
+          top: 8,
+          right: 10,
+          background: "transparent",
+          border: "none",
+          color: "#aaa",
+          cursor: "pointer",
+          fontSize: "18px",
+        }}
+      >
+        ✕
+      </button>
 
-      {expanded ? (
-        <>
-          <strong>⚡ First Visit?</strong>
+      <strong>⚡ First Visit?</strong>
 
-          <p style={{ marginTop: 8, lineHeight: 1.5 }}>
-            I'm using <b>Render's free hosting</b>, so the first visit can take
-            up to one minute.
-            <br />
-            <br />
-            Feel free to explore the page and everything should be ready
-            shortly.
-          </p>
+      <p style={{ marginTop: 8, lineHeight: 1.5 }}>
+        I'm using <b>Render's free hosting</b>, so the first visit can take up
+        to one minute.
+        <br />
+        <br />
+        Feel free to explore — everything will load shortly.
+      </p>
 
-          <p style={{ marginTop: 10, color: "#60a5fa", fontWeight: "bold" }}>
-            🚀 Waking up the server... {seconds}s
-          </p>
-
-          <small style={{ color: "#9ca3af" }}>
-            Click to collapse ▲
-          </small>
-        </>
-      ) : (
-        <>
-          <strong style={{ color: "#60a5fa" }}>
-            🚀 Waking up... {seconds}s
-          </strong>
-
-          <br />
-
-          <small style={{ color: "#9ca3af" }}>
-            Click to expand ▼
-          </small>
-        </>
-      )}
+      <p style={{ marginTop: 10, color: "#60a5fa", fontWeight: "bold" }}>
+        🚀 Waking up the server... {seconds}s
+      </p>
     </div>
   );
 
@@ -116,6 +105,8 @@ const Home = () => {
     toast.dismiss(toastId);
   };
 }, []);
+
+  
 
 
 

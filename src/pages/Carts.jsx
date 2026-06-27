@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../Api/api.js";
+import ImageWithSkeleton from "../../components/ImageWithSkeleton.jsx";
 import toast from "react-hot-toast"; // <-- import toast
 
 const Carts = ({ user }) => {
@@ -61,7 +62,7 @@ const Carts = ({ user }) => {
             products.map((product) => (
               <div key={product.id} className="products">
                 <div>
-                  <img src={product.image} alt="" />
+                  <ImageWithSkeleton src={product.image} alt={product.name} />
                 </div>
 
                 <div className="Others">
